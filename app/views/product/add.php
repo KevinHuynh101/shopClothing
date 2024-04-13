@@ -30,15 +30,17 @@ if(isset($errors)){
             <label for="fullname">Chi tiết sản phẩm</label><br>
             <input type="text" class="form-control form-control-user" id="description" name="description">
         </div>
-        <div class="form-group">
-            <label for="fullname">Hình ảnh</label><br>
-            <input type="file" class="form-control-file image-input" id="image" name="image">
-        </div>
+
 
         <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="col-sm-4">
+                <label for="fullname">Hình ảnh</label><br>
+                <input type="file" class="form-control-file image-input" id="image" name="image">
+            </div>
+            <div class="col-sm-4 mb-3 mb-sm-0">
                 <label for="category">Loại sản phẩm:</label><br>
-                <select class="form-control form-control-user" id="category" name="category"  >
+                <select id="category" name="category"  >
+                    <option value="">Chọn loại sản phẩm</option> 
                     <option value="Áo thun">Áo thun </option> 
                     <option value="Áo sơ mi" >Áo sơ mi</option>
                     <option value="Quần kaki">Quần kaki</option>
@@ -46,9 +48,10 @@ if(isset($errors)){
                 </select>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label for="discount">Giảm giá (%):</label><br>
-                <select class="form-control form-control-user" id="discount" name="discount">
+                <select id="discount" name="discount">
+                    <option value="">Chọn mức giảm giá</option>
                     <option value="10">10%</option>
                     <option value="20">20%</option>
                     <option value="30">30%</option>
@@ -56,12 +59,12 @@ if(isset($errors)){
                     <option value="50">50%</option>
                 </select>
             </div>
-           
+            
 
         </div>
         <div class="form-group text-center">
             <button class="btn btn-primary btn-icon-split p-3">
-                Lưu
+                Lưu sản phẩm
             </button>
         </div>
 

@@ -94,7 +94,6 @@ class ProductController
 
     public function edit($id)
     {
-
         $product = $this->productModel->getProductById($id);
 
         if (empty($product)) {
