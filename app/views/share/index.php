@@ -4,7 +4,7 @@ include_once 'app/views/share/header.php';
 
 <div class="row">
 
-    <a href="/chieu2/product/add" class="btn btn-primary btn-icon-split">
+    <a href="/shopclothing/product/add" class="btn btn-primary btn-icon-split">
         <span class="icon text-white-50">
             <i class="fas fa-flag"></i>
         </span>
@@ -16,36 +16,38 @@ include_once 'app/views/share/header.php';
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Action (Edit/Delete)</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Chi tiết sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Hình ảnh</th>
+                    <th>Giảm giá</th>
+                    <th>Giá</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = $products->fetch(PDO::FETCH_ASSOC)) : ?>
                     <tr>
-                        <th>
-                            <?= $row['id'] ?>
+                        <th><?= $row['id'] ?></th>
+                        <!-- <th>
+                           
                             <a class="btn btn-danger" href="/shopclothing/cart/add/<?= $row['id'] ?>">ADD TO CART</a>
-                        </th>
+                        </th> -->
                         <th><?= $row['name'] ?></th>
                         <th><?= $row['description'] ?></th>
+                        <th><?= $row['category'] ?></th>
                         <th>
-
                             <?php
-                            if (empty($row['image']) || !file_exists($row['image'])) {
-                                echo "No Image!";
-                            } else {
-                                echo "<img src='/chieu2/" . $row['image'] . "' alt='' />";
-                            }
+                                if (empty($row['image']) || !file_exists($row['image'])) {
+                                    echo "No Image!";
+                                } else {
+                                    echo "<img src='/shopclothing/" . $row['image'] . "' style='width: 200px; height: auto;' />";
+                                }
                             ?>
-
                         </th>
+                        <th><?= $row['discount'] ?>%</th>
                         <th><?= $row['price'] ?></th>
                         <th>
-                            <a href="/chieu2/product/edit/<?=$row['id']?>">
+                            <a href="/shopclothing/product/edit/<?=$row['id']?>">
                                 Edit
                             </a>
                         | Delete</th>

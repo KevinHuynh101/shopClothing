@@ -15,6 +15,9 @@ if (isset($errors)) {
 ?>
 
 <div class="card-body p-5">
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Sửa sản phẩm</h1>
+    </div>
     <form class="user" action="/shopclothing/product/save" method="post" enctype="multipart/form-data">
         <!-- đang edit cho sản phẩm  -->
         <input type="hidden" name="id" value="<?=$product->id?>">
@@ -44,11 +47,11 @@ if (isset($errors)) {
 
 
         <div class="form-group">
-            <input type="file" class="form-control form-control-user" id="image" name="image">
+            <input type="file" class="form-control-file image-input" id="image" name="image">
         </div>
         <div class="form-group text-center">
             <button class="btn btn-primary btn-icon-split p-3">
-                Save product
+                Lưu
             </button>
         </div>
     </form>

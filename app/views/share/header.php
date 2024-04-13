@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Trang Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/shopclothing/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,6 +46,12 @@
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+                        <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/shopclothing/product/listProducts">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
             </li>
 
             <!-- Divider -->
@@ -127,12 +133,7 @@
                     <span>Charts</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
