@@ -28,7 +28,7 @@ class CartController
 
     public function updateQuality($id)
     {
-        $newQuantity = $_POST['quality'];
+        $newQuantity = $_POST['quantity'];
         foreach ($_SESSION['cart'] as &$item) {
             if ($item->id == $id) {
                 $item->quantity = $newQuantity;
@@ -139,7 +139,7 @@ class CartController
     }
     function show()
     {
-        include_once 'app/views/cart/index.php';
+        include_once 'app/views/user/cart.php';
     }
 
     function checkout(){

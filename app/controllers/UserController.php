@@ -15,6 +15,9 @@ class UserController{
     }
 
 
+    function test(){
+        include_once 'app/views/user/cart.php';
+    }
 
     public function index()
     {
@@ -29,7 +32,7 @@ class UserController{
      public function detail($id) {
         // Gọi hàm từ model để lấy thông tin chi tiết sản phẩm
         $product = $this->userModel->getProductById($id);
-        
+        $products = $this->userModel->readAll();
         // Kiểm tra xem sản phẩm có tồn tại không
         if ($product) {
             // Hiển thị trang chi tiết sản phẩm
