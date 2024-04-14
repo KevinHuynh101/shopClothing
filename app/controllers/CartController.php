@@ -52,39 +52,41 @@ class CartController
         header('Location: /shopclothing/cart/show');
     }
 
-    public function Add($id)
+    public function Add($id, $size)
     {
         // Khởi tạo một phiên cart nếu chưa tồn tại
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
-
+    
         // Lấy sản phẩm từ ProductModel bằng $id
         $product = $this->productModel->getProductById($id);
-
+    
         // Nếu sản phẩm tồn tại, thêm vào giỏ hàng
         if ($product) {
             // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
             $productExist = false;
             foreach ($_SESSION['cart'] as &$item) {
-                if ($item->id == $id) {
+                if ($item->id == $id && $item->size == $size) {
                     $item->quantity++;
                     $productExist = true;
                     break;
                 }
             }
-
+    
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào
             if (!$productExist) {
+                // Thêm thông tin kích thước vào sản phẩm
                 $product->quantity = 1;
+                $product->size = $size;
                 $_SESSION['cart'][] = $product;
             }
-
-            header('Location: /shopclothing/cart/show');
+    
         } else {
             echo "Không tìm thấy sản phẩm với ID này!";
         }
     }
+    
    
 
     public function process_order()

@@ -1,4 +1,3 @@
-
 <?php
 include_once 'app/views/user/header.php';
 ?>
@@ -50,19 +49,22 @@ include_once 'app/views/user/header.php';
                     <!-- Form chọn kích thước -->
                     <form>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-1" name="size">
+                            <input type="radio" class="custom-control-input" id="size-1" name="size" value="XS">
                             <label class="custom-control-label" for="size-1">XS</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-2" name="size" value="XXS">
+                            <label class="custom-control-label" for="size-2">XXS</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-3" name="size" value="XXXS">
+                            <label class="custom-control-label" for="size-3">XXXS</label>
                         </div>
                         <!-- Thêm các option kích thước khác ở đây -->
                     </form>
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
-                    <!-- Nút thêm vào giỏ hàng
-                    <button class="btn btn-primary px-3" onclick="addToCart(<?= $product['id'] ?>)">
-                        <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
-                    </button> -->
-                    <a class="btn btn-primary px-3" href="/shopclothing/cart/add/<?= $product['id'] ?>"><i class="fa fa-shopping-cart mr-1"> Thêm giỏ hàng </i></a>
-
+                    <button class="btn btn-primary px-3" onclick="addToCart(<?= $product['id'] ?>)">Thêm vào giỏ hàng</button>
                 </div>
             </div>
         </div>
@@ -70,8 +72,7 @@ include_once 'app/views/user/header.php';
 </div>
 
     <!-- Shop Detail End -->
-
-
+    
     <!-- Products Start -->
     <div class="container-fluid py-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Có thể bạn thích</span></h2>
@@ -116,8 +117,38 @@ include_once 'app/views/user/header.php';
         </div>
     </div>
     <!-- Products End -->
+
 <?php
-
 include_once 'app/views/user/footer.php';
-
 ?>
+
+<script>
+    function addToCart(productId) {
+        // Lấy kích thước được chọn
+        var selectedSize = document.querySelector('input[name="size"]:checked');
+        var sizeValue = selectedSize ? selectedSize.value : null;
+
+        // Kiểm tra xem đã chọn kích thước chưa
+        if (!sizeValue) {
+            alert("Vui lòng chọn kích thước!");
+            return;
+        }
+
+        // Tạo một đối tượng FormData để gửi dữ liệu
+        var formData = new FormData();
+        formData.append('productId', productId);
+        formData.append('size', sizeValue);
+
+        // Tạo một request AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/shopclothing/cart/add/' + productId + '/' + sizeValue, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                // Xử lý phản hồi từ máy chủ (nếu cần)
+                console.log(xhr.responseText);
+            }
+        };
+        // Gửi dữ liệu form
+        xhr.send(formData);
+    }
+</script>
