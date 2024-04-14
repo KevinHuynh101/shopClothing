@@ -45,13 +45,19 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Thống kê</span></a>
             </li>
                         <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/shopclothing/product/listProducts">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Sản phẩm</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/shopclothing/product/listProducts">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Tài khoản</span></a>
             </li>
 
             <!-- Divider -->

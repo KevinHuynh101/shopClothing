@@ -102,4 +102,16 @@ class ProductController
             include_once 'app/views/product/edit.php';
         }
     }
+
+    public function delete($id) {
+        if ($this->productModel->delete($id)) {
+            // Nếu xóa thành công, chuyển hướng người dùng đến trang danh sách sản phẩm hoặc trang chính
+            header('Location: /shopclothing/product/listProducts');
+        } else {
+            // Xử lý khi không thể xóa sản phẩm
+            echo "Không thể xóa sản phẩm.";
+        }
+    }
+    
+
 }

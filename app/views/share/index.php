@@ -6,10 +6,11 @@ include_once 'app/views/share/header.php';
 
     <a href="/shopclothing/product/add" class="btn btn-primary btn-icon-split">
         <span class="icon text-white-50">
-            <i class="fas fa-flag"></i>
+            <i class="fas fa-plus"></i> <!-- Thay đổi class icon thành "fa-plus" -->
         </span>
-        <span class="text">Add Product</span>
+        <span class="text">Thêm sản phẩm</span>
     </a>
+
 
     <div class="col-sm-12">
         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
@@ -47,10 +48,15 @@ include_once 'app/views/share/header.php';
                         <th><?= $row['discount'] ?>%</th>
                         <th><?= $row['price'] ?></th>
                         <th>
-                            <a href="/shopclothing/product/edit/<?=$row['id']?>">
-                                Edit
+                            <a href="/shopclothing/product/edit/<?=$row['id']?>" class="btn btn-sm btn-info">
+                                <i class="fas fa-edit"></i> <!-- Sử dụng font-awesome -->
                             </a>
-                        | Delete</th>
+                            <!-- #region -->
+                            <a href="/shopclothing/product/delete/<?=$row['id']?>" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                                <i class="fas fa-trash"></i> <!-- Sử dụng font-awesome -->
+                            </a>
+                        </th>
+
                     </tr>
                 <?php endwhile; ?>
             </tbody>
