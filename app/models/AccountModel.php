@@ -60,30 +60,30 @@ class AccountModel{
         return false;
     }
 
-    // public function updateAccount($username, $email, $fullName, $password) {
-    //     // Kiểm tra xem người dùng có nhập mật khẩu mới hay không
-    //     if (!empty($password)) {
-    //         $password = password_hash($password, PASSWORD_BCRYPT);
-    //         $query = "UPDATE " . $this->table_name . " SET email = :email, fullname = :fullName, password = :password WHERE name = :username";
-    //     } else {
-    //         $query = "UPDATE " . $this->table_name . " SET email = :email, fullname = :fullName WHERE name = :username";
-    //     }
+    public function updateAccount($username, $email, $fullname, $password) {
+        // Kiểm tra xem người dùng có nhập mật khẩu mới hay không
+        if (!empty($password)) {
+            $password = password_hash($password, PASSWORD_BCRYPT);
+            $query = "UPDATE " . $this->table_name . " SET email = :email, fullname = :fullname, password = :password WHERE name = :username";
+        } else {
+            $query = "UPDATE " . $this->table_name . " SET email = :email, fullname = :fullname WHERE name = :username";
+        }
         
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bindParam(':username', $username);
-    //     $stmt->bindParam(':email', $email);
-    //     $stmt->bindParam(':fullName', $fullName);
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':fullname', $fullname);
         
-    //     // Nếu có mật khẩu mới, thì gán vào câu lệnh SQL
-    //     if (!empty($password)) {
-    //         $stmt->bindParam(':password', $password);
-    //     }
+        // Nếu có mật khẩu mới, thì gán vào câu lệnh SQL
+        if (!empty($password)) {
+            $stmt->bindParam(':password', $password);
+        }
     
-    //     if ($stmt->execute()) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
     
     
 }

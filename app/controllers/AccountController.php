@@ -111,28 +111,33 @@ class AccountController{
     }
 
     public function listAccount() {
-        // Lấy danh sách tất cả tài khoản từ model
-        $accounts = $this->accountModel->getAllAccounts();
-    
-        // Kiểm tra xem danh sách có rỗng không
-        if ($accounts) {
-            // Lấy thông tin người dùng hiện tại
-            $currentUser = $_SESSION['username'];
-    
-            // Duyệt qua danh sách tài khoản
-            foreach ($accounts as $key => $account) {
-                // Nếu tên người dùng là tài khoản của người dùng hiện tại, loại bỏ khỏi danh sách
-                if ($account['name'] == $currentUser) {
-                    unset($accounts[$key]);
-                    break;
-                }
-            }
-    
-            // Include view để hiển thị danh sách tài khoản
-            include_once 'app/views/account/list.php';
+        if(!Auth::isLoggedIn()|| !Auth::isAdmin()){
+            header('Location: /shopclothing/account/login');
+            exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
         } else {
-            // Xử lý khi không có tài khoản nào được tìm thấy
-            echo "Không có tài khoản nào.";
+            // Lấy danh sách tất cả tài khoản từ model
+            $accounts = $this->accountModel->getAllAccounts();
+        
+            // Kiểm tra xem danh sách có rỗng không
+            if ($accounts) {
+                // Lấy thông tin người dùng hiện tại
+                $currentUser = $_SESSION['username'];
+        
+                // Duyệt qua danh sách tài khoản
+                foreach ($accounts as $key => $account) {
+                    // Nếu tên người dùng là tài khoản của người dùng hiện tại, loại bỏ khỏi danh sách
+                    if ($account['name'] == $currentUser) {
+                        unset($accounts[$key]);
+                        break;
+                    }
+                }
+        
+                // Include view để hiển thị danh sách tài khoản
+                include_once 'app/views/account/list.php';
+            } else {
+                // Xử lý khi không có tài khoản nào được tìm thấy
+                echo "Không có tài khoản nào.";
+            }
         }
     }
 
@@ -173,14 +178,11 @@ class AccountController{
             $fullName = $_POST['fullname'];
             $password = $_POST['password'];
             
-            // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-            
             // Lấy tên người dùng từ session
             $username = $_SESSION['username'];
             
             // Gọi hàm cập nhật thông tin tài khoản từ AccountModel
-            $result = $this->accountModel->save( $email,$username, $fullName, $hashedPassword);
+            $result = $this->accountModel->updateAccount($username, $email,$fullName, $password);
     
             if ($result) {
                 // Nếu cập nhật thành công, chuyển hướng về trang thông tin cá nhân

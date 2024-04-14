@@ -13,10 +13,15 @@ class ProductController
 
     public function listProducts()
     {
+        if(!Auth::isLoggedIn()|| !Auth::isAdmin()){
+            header('Location: /shopclothing/account/login');
+            exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
+        } else {
 
-        //$stmt = $this->productModel->readAll();
-        $products = $this->productModel->readAll();
-        include_once 'app/views/share/index.php';
+            //$stmt = $this->productModel->readAll();
+            $products = $this->productModel->readAll();
+            include_once 'app/views/share/index.php';
+        }
     }
 
     public function add()
