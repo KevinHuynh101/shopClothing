@@ -51,7 +51,7 @@ if(isset($errors)){
             <div class="col-sm-4">
                 <label for="discount">Giảm giá (%):</label><br>
                 <select id="discount" name="discount">
-                    <option value="">Chọn mức giảm giá</option>
+                    <option value="0">Chọn mức giảm giá</option>
                     <option value="10">10%</option>
                     <option value="20">20%</option>
                     <option value="30">30%</option>

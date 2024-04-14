@@ -69,7 +69,7 @@ if (isset($errors)) {
         <div class="col-sm-6">
             <label for="discount">Giảm giá (%):</label><br>
             <select id="discount" name="discount">
-                <option value="">Chọn mức giảm giá</option>
+                <option value="0">Chọn mức giảm giá</option>
                 <option value="10" <?php echo ($product->discount == "10") ? "selected" : ""; ?>>10%</option>
                 <option value="20" <?php echo ($product->discount == "20") ? "selected" : ""; ?>>20%</option>
                 <option value="30" <?php echo ($product->discount == "30") ? "selected" : ""; ?>>30%</option>
