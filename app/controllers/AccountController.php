@@ -109,4 +109,90 @@ class AccountController{
 
         header('Location: /shopclothing/account/login');
     }
+
+    public function listAccount() {
+        // Lấy danh sách tất cả tài khoản từ model
+        $accounts = $this->accountModel->getAllAccounts();
+    
+        // Kiểm tra xem danh sách có rỗng không
+        if ($accounts) {
+            // Lấy thông tin người dùng hiện tại
+            $currentUser = $_SESSION['username'];
+    
+            // Duyệt qua danh sách tài khoản
+            foreach ($accounts as $key => $account) {
+                // Nếu tên người dùng là tài khoản của người dùng hiện tại, loại bỏ khỏi danh sách
+                if ($account['name'] == $currentUser) {
+                    unset($accounts[$key]);
+                    break;
+                }
+            }
+    
+            // Include view để hiển thị danh sách tài khoản
+            include_once 'app/views/account/list.php';
+        } else {
+            // Xử lý khi không có tài khoản nào được tìm thấy
+            echo "Không có tài khoản nào.";
+        }
+    }
+
+    public function delete($id) {
+        // Gọi hàm xóa tài khoản từ AccountModel
+        $result = $this->accountModel->deleteAccount($id);
+        
+        if ($result) {
+            // Nếu xóa thành công, chuyển hướng về trang danh sách tài khoản
+            header('Location: /shopclothing/account/listAccount');
+        } else {
+            // Xử lý lỗi nếu cần
+            echo "Xóa tài khoản không thành công!";
+        }
+    }
+
+    // hiển thị trang  thông tin tài khoản:
+    public function profile() {
+        // Lấy thông tin tài khoản từ session
+        $username = $_SESSION['username'];
+        
+        // Gọi hàm để lấy thông tin tài khoản từ model
+        $account = $this->accountModel->getAccountByUsername($username);
+    
+        // Kiểm tra xem tài khoản có tồn tại không
+        if ($account) {
+            // Hiển thị form chỉnh sửa thông tin tài khoản với dữ liệu của tài khoản hiện tại
+            include_once 'app/views/account/profile.php';
+        } else {
+            // Xử lý khi không tìm thấy tài khoản
+            echo "Không tìm thấy tài khoản!";
+        }
+    }   
+    public function update() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Nhận dữ liệu từ form chỉnh sửa
+            $email = $_POST['email'];
+            $fullName = $_POST['fullname'];
+            $password = $_POST['password'];
+            
+            // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+            
+            // Lấy tên người dùng từ session
+            $username = $_SESSION['username'];
+            
+            // Gọi hàm cập nhật thông tin tài khoản từ AccountModel
+            $result = $this->accountModel->save( $email,$username, $fullName, $hashedPassword);
+    
+            if ($result) {
+                // Nếu cập nhật thành công, chuyển hướng về trang thông tin cá nhân
+                header('Location: /shopclothing/product/listProducts');
+            } else {
+                // Xử lý lỗi nếu cần
+                echo "Cập nhật tài khoản không thành công!";
+            }
+        }
+    }
+    
+    
+    
+
 }
