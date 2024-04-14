@@ -17,7 +17,7 @@ include_once 'app/views/user/header.php';
 
 
     <!-- Cart Start -->
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
         <div class="row px-xl-5 justify-content-center"> <!-- Thêm lớp 'justify-content-center' để căn giữa theo chiều ngang -->
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-light table-borderless table-hover text-center mb-0">
@@ -72,11 +72,19 @@ include_once 'app/views/user/header.php';
                         <?php endif; ?>
                     </tbody>
                 </table>
+                <a href="/shopclothing/cart/checkout" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-checkout"></i> <!-- Thay đổi class icon thành "fa-checkout" -->
+                    </span>
+                    <span class="text">Mua hàng</span>
+                </a>
+
             </div>
         </div>
+        
     </div>
 
-    <!-- Cart End -->
+
 
 
 

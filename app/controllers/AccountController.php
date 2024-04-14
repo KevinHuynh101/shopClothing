@@ -90,9 +90,9 @@ class AccountController{
 
                 // Kiểm tra nếu là admin thì chuyển hướng đến trang admin
                 if(Auth::isAdmin()) {
-                    header('Location: /shopclothing');
+                    header('Location: /shopclothing/product/listProducts');
                 } else {
-                    header('Location: /shopclothing');
+                    header('Location: /shopclothing/user/index');
                 }
                 exit();
             }else{

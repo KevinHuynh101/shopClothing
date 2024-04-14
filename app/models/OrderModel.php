@@ -16,7 +16,7 @@ class OrderModel {
     //     return $stmt;
     // }
 
-    function createOrder($hoTen, $dienThoai, $email, $diachi, $ghichu, $phuongThucThanhToan)
+    function createOrder($hoTen, $dienThoai, $email, $diachi, $ghichu, $phuongThucThanhToan, $productID, $soLuong, $size, $donGia, $thanhTien)
     {
         // uploadResult: đường dẫn của file hình 
         // uploadResult = false: lỗi upload hình ảnh
@@ -35,7 +35,7 @@ class OrderModel {
 
         // Truy vấn tạo sản phẩm mới
 
-        $query = "INSERT INTO " . $this->table_name . " (hoTen, dienThoai, email, diachi, ghiChu, phuongThucThanhToan) VALUES (:hoTen, :dienThoai, :email, :diachi, :ghichu, :phuongThucThanhToan)";
+        $query = "INSERT INTO " . $this->table_name . " (name, phone, email, address, note, payment, productID ,quantity ,price, size,total) VALUES (:hoTen, :dienThoai, :email, :diachi, :ghichu, :phuongThucThanhToan, :productID, :soLuong, :donGia, :size, :thanhTien)";
         $stmt = $this->conn->prepare($query);
 
         // Làm sạch dữ liệu
@@ -45,7 +45,11 @@ class OrderModel {
         $diachi = htmlspecialchars(strip_tags($diachi));
         $ghichu = htmlspecialchars(strip_tags($ghichu));
         $phuongThucThanhToan = htmlspecialchars(strip_tags($phuongThucThanhToan));
-
+        $productID = htmlspecialchars(strip_tags($productID));
+        $soLuong = htmlspecialchars(strip_tags($soLuong));
+        $donGia = htmlspecialchars(strip_tags($donGia));
+        $thanhtien = htmlspecialchars(strip_tags($thanhTien));
+        $size = htmlspecialchars(strip_tags($size));
         // Gán dữ liệu vào câu lệnh
         $stmt->bindParam(':hoTen', $hoTen);
         $stmt->bindParam(':dienThoai', $dienThoai);
@@ -53,10 +57,12 @@ class OrderModel {
         $stmt->bindParam(':diachi', $diachi);
         $stmt->bindParam(':ghichu', $ghichu);
         $stmt->bindParam(':phuongThucThanhToan', $phuongThucThanhToan);
-        
+        $stmt->bindParam(':productID', $productID);
+        $stmt->bindParam(':soLuong', $soLuong);
+        $stmt->bindParam(':donGia', $donGia);
+        $stmt->bindParam(':thanhTien', $thanhTien);
+        $stmt->bindParam(':size', $size);
            
-        
-
         // Thực thi câu lệnh
         if ($stmt->execute()) {
             return true;

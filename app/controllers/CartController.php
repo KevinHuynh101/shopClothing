@@ -4,7 +4,7 @@ class CartController
 
     private $productModel;
     private $orderModel;
-    private $orderDetailModel;
+
 
     private $dbp;
     private $dbo;
@@ -20,7 +20,7 @@ class CartController
 
         $this-> orderModel = new OrderModel($this->dbo);
         $this-> productModel = new ProductModel($this->dbp);
-        $this-> orderDetailModel = new OrderDetailModel($this->dbp);
+
 
 
     }
@@ -107,37 +107,32 @@ class CartController
             } else {
                 // Hiển thị danh sách sản phẩm trong giỏ hàng
                 foreach ($_SESSION['cart'] as $item) {
-                    $orderID="1";
                     $productID = $item->id;
                     $soLuong = $item->quantity;
-                    $giaTien = $item->price;
+                    $size =  $item->size;
+                    $giaTien = $item->price -($item->price * $item->discount)/100 ;
                     $thanhTien = intval($soLuong) * floatval($giaTien);
-                    $a = $this->orderDetailModel->createDetailOrder( $orderID,$productID, $soLuong, $giaTien, $thanhTien);   
+                    $result = $this->orderModel->createOrder($hoTen, $dienThoai, $email, $diachi, $ghichu, $phuongThucThanhToan,$productID, $soLuong,$size, $giaTien, $thanhTien);
+
                 }
             }
-            
-            // Kiểm tra nếu tồn tại các biến POST khác (như $id)
-            // Nếu không, bạn có thể không cần phải kiểm tra này
-            
-            // Gọi phương thức createOrder từ lớp OrderModel
-            $result = $this->orderModel->createOrder($hoTen, $dienThoai, $email, $diachi, $ghichu, $phuongThucThanhToan);
-            
-            // Kiểm tra kết quả từ phương thức createOrder
+
             if ($result === true) {
+                unset($_SESSION['cart']);
                 // Đơn hàng được lưu thành công, chuyển hướng về trang chính hoặc trang danh sách
-                header('Location: /shopclothing');
+                header('Location: /shopclothing/user/index');
                 exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
             } else {
                 // Có lỗi xảy ra, hiển thị lại form với thông báo lỗi
                 $errors = $result; // Trong trường hợp này, $result có thể chứa thông điệp lỗi
-                include 'app/views/cart/index.php'; // Đảm bảo rằng đường dẫn đến view là chính xác
+                include 'app/views/user/index.php'; // Đảm bảo rằng đường dẫn đến view là chính xác
                 exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau khi include view
             }
         }
     }
     
     function order(){
-        include_once 'app/views/cart/order.php';
+        include_once 'app/views/user/order.php';
     }
     function show()
     {
@@ -145,14 +140,14 @@ class CartController
     }
 
     function checkout(){
-        // if(!Auth::isLoggedIn()){
-        //     echo "<script>alert('Xin lỗi, bạn chưa đăng nhập');</script>";
-        //     header('Location: /shopclothing/account/login');
-        //     exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
-        // } else {
+        if(!Auth::isLoggedIn()){
+            echo "<script>alert('Xin lỗi, bạn chưa đăng nhập');</script>";
+            header('Location: /shopclothing/account/login');
+            exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
+        } else {
             header('Location: /shopclothing/cart/order');
-            // exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
-        // }
+            exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
+        }
     }
   
 }

@@ -16,7 +16,7 @@ class UserController{
 
 
     function test(){
-        include_once 'app/views/user/cart.php';
+        include_once 'app/views/user/order.php';
     }
 
     public function index()
