@@ -131,6 +131,17 @@ class ProductModel {
         return $stmt; 
     }
     
+    public function countProducts() {
+        $query = "SELECT COUNT(id) AS total FROM " . $this->table_name;
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+    
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $row['total'];
+    }
+    
     
     
 }

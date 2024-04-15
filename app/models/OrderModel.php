@@ -120,7 +120,35 @@ class OrderModel {
 
         return false;
     }
-    
+    public function sumtotal() {
+        $query = "SELECT SUM(total) AS total FROM $this->table_name WHERE action = 'Xác nhận'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total'];
+    }
+
+    public function countOrders() {
+        // Truy vấn SQL để đếm tổng số đơn hàng
+        $query = "SELECT COUNT(id) AS totalOrders FROM " . $this->table_name;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['totalOrders'];
+    }
+    public function getTopProducts($limit) {
+        $query = "SELECT p.name AS productName, SUM(o.quantity) AS total_sold
+                  FROM $this->table_name o
+                  INNER JOIN products p ON o.productID = p.id
+                  WHERE o.action = 'Xác nhận'
+                  GROUP BY o.productID
+                  ORDER BY total_sold DESC
+                  LIMIT :limit";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     
 }

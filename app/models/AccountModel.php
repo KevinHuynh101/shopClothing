@@ -85,5 +85,11 @@ class AccountModel{
         return false;
     }
     
-    
+    public function countAccounts() {
+        $query = "SELECT COUNT(*) AS total FROM " . $this->table_name;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total'];
+    }
 }
