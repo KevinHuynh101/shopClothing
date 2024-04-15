@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 15, 2024 lúc 06:23 AM
+-- Thời gian đã tạo: Th4 15, 2024 lúc 08:34 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -72,12 +72,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `name`, `phone`, `email`, `address`, `note`, `payment`, `productID`, `price`, `size`, `total`, `quantity`, `action`) VALUES
-(6, '0', 23344, 'kimd@gmail.com', 'diachi', 'ghi chu', 'cod', 4, 111111, 'XXXS', 111111, 1, 'Xác nhận'),
-(7, 'huynh nam', 32699999, 'kimdong@gmail.com', 'quận 9 , tp.hcm', '', 'cod', 4, 111111, 'XXXS', 111111, 1, 'Xác nhận'),
-(8, 'huynh nam', 32699999, 'kimdong@gmail.com', 'quận 9 , tp.hcm', '', 'cod', 3, 499999.5, 'XXS', 499999.5, 1, 'Hủy'),
-(9, 'huynh nam', 3222222, 'huynhnam@gmail.com', 'gò vấp', '', 'cod', 4, 111111, 'XXS', 222222, 2, 'Hủy'),
-(10, 'như huỳnh', 2666666, 'nhuhuynh@gmail.com', 'tân bình', '', 'bank_transfer', 3, 499999.5, 'XS', 2499997.5, 5, ''),
-(11, 'như huỳnh', 2666666, 'nhuhuynh@gmail.com', 'tân bình', '', 'bank_transfer', 9, 258252, 'XS', 258252, 1, '');
+(12, 'huynh nam', 32694443, 'huynhnam@gmail.com', 'gò vấp ', '', 'cod', 17, 315000, 'XS', 1575000, 5, 'Xác nhận'),
+(13, 'như huỳnh', 33225584, 'nhuhuynh@gmail.com', 'quan 9', '', 'bank_transfer', 19, 315000, 'XXXS', 2205000, 7, 'Xác nhận'),
+(14, 'như huỳnh', 33225584, 'nhuhuynh@gmail.com', 'quan 9', '', 'bank_transfer', 20, 445000, 'XS', 4450000, 10, 'Xác nhận'),
+(15, 'như huỳnh', 33225584, 'nhuhuynh@gmail.com', 'quan 9', '', 'bank_transfer', 22, 409.5, 'XXXS', 2047.5, 5, 'Hủy');
 
 -- --------------------------------------------------------
 
@@ -100,15 +98,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `category`, `discount`) VALUES
-(2, 'áo thun', 'day là chi tiết sảnvpham63', 1000, 'uploads/fa6ada2555e8e51f369718bbc92ccc52.png', 'áo thun', 10),
-(3, 'áo trắng', 'áo rất trắng', 999999, 'uploads/laptop.png', 'Áo thun', 50),
-(4, 'huynhnam', 'huynhnam', 111111, 'uploads/24b194a695ea59d384768b7b471d563f.png', 'Quần ngắn', 0),
-(7, 'test', 'fgfdgdf', 1000, 'uploads/b0f78c3136d2d78d49af71dd1c3f38c1.png', 'Áo thun', 40),
-(8, 'ffdsds', 'fsfsdfsf', 222222, 'uploads/24b194a695ea59d384768b7b471d563f.png', 'Áo thun', 0),
-(9, 'fdfsdfsdfdsf', 'vvfdfdfsg', 258252, 'uploads/xe máy.png', 'Quần kaki', 0),
-(10, 'fsddsfsdf', 'fsfsf', 2582, 'uploads/ec14dd4fc238e676e43be2a911414d4d.png', 'Quần ngắn', 0),
-(11, 'fsdfsdfds', 'fsfsdfsd', 2222, 'uploads/c3f3edfaa9f6dafc4825b77d8449999d (1).png', 'Áo sơ mi', 0),
-(12, 'fsfsfds', 'daddad', 5528528, 'uploads/ec14dd4fc238e676e43be2a911414d4d.png', 'Quần ngắn', 30);
+(13, 'Áo sơ mi samray Old Sailor', 'Được làm từ chất liệu vải Cotton tạo cảm giác dễ chịu và thoáng mát cho tất cả mọi người, từ công sở cho tới đi chơi hay chỉ đơn giản là mặc tại nhà, Áo sơ mi của chúng tôi cực kì dễ phối đồ bởi thiết kế đơn giản và tinh gọn.', 316000, 'uploads/z5272890565953_5bf5177b3efd8390031a8e609f37895b.jpg', 'Áo sơ mi', 20),
+(16, 'Áo sơ mi coban vải nano ', 'Áo sơ mi nano coban ', 475000, 'uploads/ea1530883d6ee830b17f2.jpg', 'Áo sơ mi', 20),
+(17, 'Áo thun block core Old Sailor', 'Áo thun block core Old Sailor - ATDE88576 - đen - Big size upto 5XL', 315000, 'uploads/90007d487a9ad0c4898b77.jpg', 'Áo thun', 0),
+(18, 'Áo thun thể thao Old Sailor', 'Áo thun thể thao Old Sailor - ATDX33009 - Big size upto 5XL', 295000, 'uploads/2020d1a7-b5c3-4c79-b02b-91222619463a.jpg', 'Áo thun', 10),
+(19, 'Áo thun họa tiết Retro Door', 'Áo thun họa tiết Retro Door Old Sailor - ATDE26022 - đen - Big Size Upto 5XL', 315000, 'uploads/f00ead54-8024-4d78-91e0-2fbb2fa4488b.jpg', 'Áo thun', 0),
+(20, 'Quần kaki basic nam', 'Quần kaki basic nam form slim-fit Old Sailor - QKDE31007 - Big size upto 42', 445000, 'uploads/582e9c12-29dd-4f8d-9d96-a7340420fb48.jpg', 'Quần kaki', 0),
+(21, 'Quần khaki nam basic - BLACK ', 'Quần khaki nam basic Old Sailor - O.S.L KAKI BASIC - BLACK - QKDE11082 - Big Size upto 40', 455000, 'uploads/369338fc1314cf4a960523.jpg', 'Quần kaki', 0),
+(22, 'Quần khaki nam basic- BEIGE ', 'Quần khaki nam basic Old Sailor - O.S.L KAKI BASIC - BEIGE - QKBE26011- Big Size upto 40', 455, 'uploads/IMG_0306-192.jpg', 'Quần kaki', 10),
+(23, 'Quần short thun nam-SHXC88549', 'Quần short thun nam Old Sailor - SHXC88549 - Big Size upto 5XL', 252000, 'uploads/z5318898531927_13509698a01d9f63a45c2335f76eda0e.jpg', 'Quần ngắn', 0),
+(24, 'Quần lửng nam Old Sailor', 'Quần lửng nam Old Sailor - O.S.L DENIM PREMIUM SHORT - 6890 - Big size upto 42', 355000, 'uploads/z5304214740462_56e5c815a29d7d099b15ccfec0c0b3f0.jpg', 'Quần ngắn', 30),
+(25, 'Quần lửng kaki túi hộp Old Sailor', 'Quần lửng kaki túi hộp Old Sailor - SHXA31008 - Big size upto 40', 325, 'uploads/8de1c840fea854f60db91.jpg', 'Quần ngắn', 30),
+(26, 'Quần lửng kaki túi hộp - SHDE31008', 'Quần lửng kaki túi hộp Old Sailor - SHDE31008 - Big size upto 40', 325000, 'uploads/IMG_3997.jpg', 'Quần ngắn', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -147,13 +148,13 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
