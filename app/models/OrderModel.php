@@ -75,7 +75,51 @@ class OrderModel {
 
         return false;
     }
+    public function updateAction($orderId, $action= "Xác nhận") {
+        // Truy vấn SQL để cập nhật cột "action"
+        $query = "UPDATE $this->table_name SET action = :action WHERE id = :orderId";
 
+        // Chuẩn bị câu lệnh truy vấn
+        $stmt = $this->conn->prepare($query);
+
+        // Làm sạch dữ liệu
+        $orderId = htmlspecialchars(strip_tags($orderId));
+        $action = htmlspecialchars(strip_tags($action));
+
+        // Gán dữ liệu vào câu lệnh
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindParam(':action', $action);
+
+        // Thực thi câu lệnh
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function cancelaction($orderId, $action= "Hủy") {
+        // Truy vấn SQL để cập nhật cột "action"
+        $query = "UPDATE $this->table_name SET action = :action WHERE id = :orderId";
+
+        // Chuẩn bị câu lệnh truy vấn
+        $stmt = $this->conn->prepare($query);
+
+        // Làm sạch dữ liệu
+        $orderId = htmlspecialchars(strip_tags($orderId));
+        $action = htmlspecialchars(strip_tags($action));
+
+        // Gán dữ liệu vào câu lệnh
+        $stmt->bindParam(':orderId', $orderId);
+        $stmt->bindParam(':action', $action);
+
+        // Thực thi câu lệnh
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
     
 
     

@@ -31,11 +31,11 @@
                         <td><?= $order['total'] ?></td>
                         <td><?= $order['action'] ?></td>
                         <td>
-                            <a href="/shopclothing/order/edit/<?= $order['id'] ?>" class="btn btn-sm btn-info">
-                                Sửa
+                            <a href="/shopclothing/order/updateaction/<?= $order['id'] ?>" class="btn btn-sm btn-info">
+                            ✔
                             </a>
-                            <a href="/shopclothing/order/delete/<?= $order['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa đơn đặt hàng này?')">
-                                Xóa
+                            <a href="/shopclothing/order/cancelaction/<?= $order['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn đặt hàng này?')">
+                            ✘
                             </a>
                         </td>
                     </tr>
