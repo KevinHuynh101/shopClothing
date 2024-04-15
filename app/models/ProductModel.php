@@ -7,10 +7,22 @@ class ProductModel {
         $this->conn = $db;
     }
 
-    function readAll() {
+    function readAll($keyword = null) {
         $query = "SELECT id, name, description, price, image, category, discount FROM " . $this->table_name;
 
+        // Nếu có từ khóa tìm kiếm, thêm điều kiện WHERE vào truy vấn
+        if ($keyword) {
+            $query .= " WHERE name LIKE :keyword ";
+        }
+
         $stmt = $this->conn->prepare($query);
+
+        // Nếu có từ khóa, gán giá trị cho tham số
+        if ($keyword) {
+            $keyword = "%{$keyword}%";
+            $stmt->bindParam(':keyword', $keyword);
+        }
+
         $stmt->execute();
 
         return $stmt;

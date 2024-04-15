@@ -11,15 +11,17 @@ class ProductController
         $this->productModel = new ProductModel($this->db);
     }
 
-    public function listProducts()
-    {
-        if(!Auth::isLoggedIn()|| !Auth::isAdmin()){
+    public function listProducts() {
+        if (!Auth::isLoggedIn() || !Auth::isAdmin()) {
             header('Location: /shopclothing/account/login');
-            exit(); // Chắc chắn rằng không có mã PHP nào khác được thực thi sau lệnh header
+            exit(); 
         } else {
+            // Kiểm tra xem có từ khóa tìm kiếm được gửi từ form hay không
+            $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
 
-            //$stmt = $this->productModel->readAll();
-            $products = $this->productModel->readAll();
+            // Gọi phương thức trong model để đọc tất cả sản phẩm hoặc sản phẩm được lọc theo từ khóa tìm kiếm
+            $products = $this->productModel->readAll($keyword);
+
             include_once 'app/views/share/index.php';
         }
     }

@@ -10,6 +10,6 @@ class DefaultController{
     }
     public function Index() {
         
-            header('Location: /shopclothing/product/listProducts');
+            header('Location: /shopclothing/user/index');
     }
 }

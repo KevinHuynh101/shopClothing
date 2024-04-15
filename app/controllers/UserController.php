@@ -15,9 +15,6 @@ class UserController{
     }
 
 
-    function test(){
-        include_once 'app/views/user/shop.php';
-    }
 
     public function index()
     {
