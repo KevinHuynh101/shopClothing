@@ -16,7 +16,7 @@ class UserController{
 
 
     function test(){
-        include_once 'app/views/user/order.php';
+        include_once 'app/views/user/shop.php';
     }
 
     public function index()
@@ -25,6 +25,15 @@ class UserController{
             //$stmt = $this->productModel->readAll();
             $products = $this->userModel->readAll();
             include_once 'app/views/user/index.php';
+        
+    }
+
+    public function shop()
+    {
+
+            //$stmt = $this->productModel->readAll();
+            $products = $this->productModel->readAll();
+            include_once 'app/views/user/shop.php';
         
     }
 
