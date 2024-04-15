@@ -109,5 +109,16 @@ class ProductModel {
         }
         return false;
     }
+
+     // Phương thức để lọc sản phẩm theo danh mục
+     public function getProductsByCategories($selectedCategories) {
+        $placeholders = str_repeat('?,', count($selectedCategories) - 1) . '?';
+        $query = "SELECT * FROM " . $this->table_name . " WHERE category IN ($placeholders)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute($selectedCategories);
+        return $stmt; 
+    }
+    
+    
     
 }

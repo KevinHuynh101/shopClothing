@@ -28,13 +28,20 @@ class UserController{
         
     }
 
-    public function shop()
-    {
-
-            //$stmt = $this->productModel->readAll();
+    public function shop() {
+       
+        // Kiểm tra xem có yêu cầu lọc theo danh mục không
+        if(isset($_GET['categories']) && !empty($_GET['categories'])) {
+            $selectedCategories = $_GET['categories'];
+            // Gọi phương thức trong model để lọc sản phẩm theo danh mục được chọn
+            $products = $this->productModel->getProductsByCategories($selectedCategories);
+        } else {
+            // Nếu không có yêu cầu lọc, hiển thị tất cả sản phẩm
             $products = $this->productModel->readAll();
-            include_once 'app/views/user/shop.php';
-        
+        }
+
+        // Hiển thị trang shop với danh sách sản phẩm đã lọc
+        include_once 'app/views/user/shop.php';
     }
 
      // Phương thức hiển thị trang chi tiết sản phẩm

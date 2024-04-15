@@ -21,30 +21,31 @@ include_once 'app/views/user/header.php';
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-4">
-                <!-- Size Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Loc theo danh mục</span></h5>
                 <div class="bg-light p-4 mb-30">
-                    <form>
+                    <form action="/shopclothing/user/shop" method="GET">
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="aothun">
+                            <input type="radio" class="custom-control-input" checked id="aothun" name="categories[]" value="Áo thun">
                             <label class="custom-control-label" for="aothun">Áo thun</label>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="aosomi">
+                            <input type="radio" class="custom-control-input" id="aosomi" name="categories[]" value="Áo sơ mi">
                             <label class="custom-control-label" for="aosomi">Áo sơ mi</label>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="quankaki">
+                            <input type="radio" class="custom-control-input" id="quankaki" name="categories[]" value="Quần kaki">
                             <label class="custom-control-label" for="quankaki">Quần kaki</label>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="quanngan">
+                            <input type="radio" class="custom-control-input" id="quanngan" name="categories[]" value="Quần ngắn">
                             <label class="custom-control-label" for="quanngan">Quần ngắn</label>
                         </div>
+                        <!-- Thêm các hộp kiểm khác nếu cần thiết cho các danh mục khác -->
+                        <button type="submit" class="btn btn-primary">Lọc sản phẩm </button>
                     </form>
                 </div>
-                <!-- Size End -->
             </div>
+
             <!-- Shop Sidebar End -->
 
 
