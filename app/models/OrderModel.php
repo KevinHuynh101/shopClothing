@@ -7,14 +7,19 @@ class OrderModel {
         $this->conn = $db;
     }
 
-    // function readAll() {
-    //     $query = "SELECT id, name, description, price, image FROM " . $this->table_name;
+    public function readAll() {
+        // Truy vấn SQL để lấy thông tin từ cả hai bảng orders và products
+        $query = "SELECT o.*, p.name AS productName FROM $this->table_name o LEFT JOIN products p ON o.productID = p.id";
 
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->execute();
+        // Chuẩn bị câu lệnh truy vấn
+        $stmt = $this->conn->prepare($query);
 
-    //     return $stmt;
-    // }
+        // Thực thi truy vấn
+        $stmt->execute();
+
+        // Trả về kết quả
+        return $stmt;
+    }
 
     function createOrder($hoTen, $dienThoai, $email, $diachi, $ghichu, $phuongThucThanhToan, $productID, $soLuong, $size, $donGia, $thanhTien)
     {
