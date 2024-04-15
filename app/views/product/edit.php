@@ -44,10 +44,11 @@ if (isset($errors)) {
             if (empty($product->image) || !file_exists($product->image)) {
                 echo "No Image!";
             } else {
-                echo "<img src='/shopclothing/" . $product->image . "' alt='' />";
+                echo "<img src='/shopclothing/" . $product->image . "' alt='' class='img-thumbnail' style='max-width: 200px; max-height: 200px;' />";
             }
             ?>
         </div>
+
 
 
         <div class="form-group">

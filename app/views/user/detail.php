@@ -41,7 +41,7 @@ include_once 'app/views/user/header.php';
                 <!-- Hiển thị tên sản phẩm -->
                 <h3><?= $product['name'] ?></h3>
                 <!-- Hiển thị giá sản phẩm -->
-                <h3 class="font-weight-semi-bold mb-4"><?= $product['price'] ?></h3>
+                <h3 class="font-weight-semi-bold mb-4">$<?= $product['price'] ?></h3>
                 <!-- Hiển thị mô tả sản phẩm -->
                 <p class="mb-4"><?= $product['description'] ?></p>
                 <div class="d-flex mb-3">

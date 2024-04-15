@@ -59,7 +59,7 @@ class ProductController
                 $errors = $result;
                 include 'app/views/product/add.php';
             } else {
-                header('Location: /shopclothing');
+                header('Location: /shopclothing/product/listProducts');
             }
         }
     }
@@ -78,7 +78,7 @@ class ProductController
             $uploadOk = 0;
         }
 
-        if ($file["size"] > 500000) {
+        if ($file["size"] > 5000000) {
             $uploadOk = 0;
         }
 
