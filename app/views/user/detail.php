@@ -41,7 +41,22 @@ include_once 'app/views/user/header.php';
                 <!-- Hiển thị tên sản phẩm -->
                 <h3><?= $product['name'] ?></h3>
                 <!-- Hiển thị giá sản phẩm -->
-                <h3 class="font-weight-semi-bold mb-4">$<?= $product['price'] ?></h3>
+                <?php
+                        // Tính giá sau khi áp dụng giảm giá
+                        $discountedPrice = $product['price'] - ($product['price'] * $product['discount'] / 100);
+                ?>
+                
+                <div class="font-weight-semi-bold mb-4">
+                    <?php if ($product['discount'] > 0) : ?>
+                        <h6 class="text-muted ml-2"><del>$<?= $product['price'] ?> </del></h6>
+                    <?php endif; ?>
+                    <h5>$<?= $discountedPrice ?></h5>
+                </div>
+                <?php if ($product['discount'] > 0) : ?>
+                    <a class="h6 text-decoration-none text-truncate text-warning" href=""> giảm <?= $product['discount'] ?>%</a>
+                <?php endif; ?>
+                        
+              
                 <!-- Hiển thị mô tả sản phẩm -->
                 <p class="mb-4"><?= $product['description'] ?></p>
                 <div class="d-flex mb-3">
