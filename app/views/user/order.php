@@ -29,7 +29,7 @@ include_once 'app/views/user/header.php';
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Điện Thoại:</label>
-                        <input class="form-control" type="text" id="dienThoai" name="dienThoai" >
+                        <input class="form-control" type="number" id="dienThoai" name="dienThoai" >
                     </div>
                     <div class="col-md-6 form-group">
                         <label>E-mail</label>

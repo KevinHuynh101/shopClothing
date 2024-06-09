@@ -30,6 +30,7 @@ class OrderModel {
         if (empty($hoTen)) {
             $errors['hoTen'] = 'Tên không được để trống';
         }
+    
         if (empty($dienThoai)) {
             $errors['dienThoai'] = 'Dien thoai khong dc de trong';
         }
